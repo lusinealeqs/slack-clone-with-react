@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CreateIcon from "@material-ui/icons/Create";
 import { sidebarItemsData } from "../data/SidebarData";
+import { sidebarChannelsData } from "../data/SidebarData";
 import AddIcon from "@material-ui/icons/Add";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
@@ -33,8 +34,9 @@ function Sidebar() {
                     </AddIconDiv>
                 </NewChannelContainer>
                 <ChannelsList>
-                    <Channel># Channel 1</Channel>
-                    <Channel># Channel 2</Channel>
+                    {sidebarChannelsData.map((list) => (
+                        <Channel>{list.text}</Channel>
+                    ))}
                 </ChannelsList>
             </ChannelsContainer>
         </Container>
