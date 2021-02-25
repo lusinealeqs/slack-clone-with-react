@@ -9,13 +9,14 @@ function ChatHeader() {
         <Container>
             <Main>
                 <FirstRow>
-                    <ChannelName># Channel 1 </ChannelName>
+                    <ChannelName># CleverProgrammer </ChannelName>
                     <StarOutlineIcon />
                 </FirstRow>
-                <SecondRow>Clever Programmer's first channel</SecondRow>
+                <ChannelInfo>
+                    Company-wide announcements and work-based matters
+                </ChannelInfo>
             </Main>
             <UserContainer>
-                Details
                 <IconButton>
                     <InfoOutlinedIcon />
                 </IconButton>
@@ -43,7 +44,7 @@ const Main = styled.div`
 `;
 
 const ChannelName = styled.div`
-    font-weight: 100;
+    font-weight: 700;
 `;
 
 const FirstRow = styled.div`
@@ -56,8 +57,10 @@ const FirstRow = styled.div`
     }
 `;
 
-const SecondRow = styled.div`
-    font-size: 0.9rem;
+const ChannelInfo = styled.div`
+    font-weight: 400;
+    font-size: 13px;
+    color: #606060;
 `;
 
 const UserContainer = styled.div`

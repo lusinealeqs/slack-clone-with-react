@@ -1,11 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import ChatHeader from "./ChatHeader";
+import ChatInput from "./ChatInput";
+import ChatMessage from "./ChatMessage";
 
 function Chat() {
     return (
         <Container>
             <ChatHeader />
+            <MessageContainer>
+                <ChatMessage />
+            </MessageContainer>
+            <ChatInput />
         </Container>
     );
 }
@@ -13,11 +19,13 @@ function Chat() {
 export default Chat;
 
 const Container = styled.div`
-    width: 100%;
-    height: 100vh;
+    // width: 100%;
+    // height: 100vh;
     display: grid;
-    grid-template-rows: 64px auto;
+    grid-template-rows: 64px auto min-content;
 `;
+
+const MessageContainer = styled.div``;
 
 // const Main = styled.div`
 //     ${(props) => {

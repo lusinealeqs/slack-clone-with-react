@@ -2,11 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import CreateIcon from "@material-ui/icons/Create";
 import { sidebarItemsData } from "../data/SidebarData";
-import { sidebarChannelsData } from "../data/SidebarData";
 import AddIcon from "@material-ui/icons/Add";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import db from "../firebase";
 
-function Sidebar() {
+function Sidebar(props) {
+    const addChannel = () => {
+        const promptName = prompt("Enter Channel Name");
+        if (promptName) {
+            db.collection("rooms").add({
+                name: promptName,
+            });
+        }
+    };
+
     return (
         <Container>
             <WorkspaceContainer>
@@ -25,17 +33,14 @@ function Sidebar() {
             </MainChannels>
             <ChannelsContainer>
                 <NewChannelContainer>
-                    <ArrowDiv>
-                        <ArrowDropDownIcon className="dropdown" />
-                    </ArrowDiv>
                     <div>Channels</div>
                     <AddIconDiv>
-                        <AddIcon className="addIcon" />
+                        <AddIcon className="addIcon" onClick={addChannel} />
                     </AddIconDiv>
                 </NewChannelContainer>
                 <ChannelsList>
-                    {sidebarChannelsData.map((list) => (
-                        <Channel>{list.text}</Channel>
+                    {props.rooms.map((item) => (
+                        <Channel> # {item.name} </Channel>
                     ))}
                 </ChannelsList>
             </ChannelsContainer>
@@ -46,7 +51,7 @@ function Sidebar() {
 export default Sidebar;
 
 const Container = styled.div`
-    background: #3f0e40;
+    background-color: #3f0e40;
     position: relative;
 `;
 
@@ -118,21 +123,6 @@ const Channel = styled.div`
     cursor: pointer;
     :hover {
         background: #350d36;
-    }
-`;
-
-const ArrowDiv = styled.div`
-    width: 25px;
-    height: 26px;
-    border-radius: 25%;
-    cursor: pointer;
-
-    .dropdown {
-        width: 100%;
-        border-radius: 25%;
-    }
-    .dropdown:hover {
-        background-color: rgba(255, 255, 255, 0.171);
     }
 `;
 
