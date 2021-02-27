@@ -4,14 +4,22 @@ import CreateIcon from "@material-ui/icons/Create";
 import { sidebarItemsData } from "../data/SidebarData";
 import AddIcon from "@material-ui/icons/Add";
 import db from "../firebase";
+import { useHistory } from "react-router-dom";
 
 function Sidebar(props) {
-    const addChannel = () => {
+    const addChannel = async (e) => {
+        e.preventDefault();
         const promptName = prompt("Enter Channel Name");
         if (promptName) {
-            db.collection("rooms").add({
+            await db.collection("rooms").add({
                 name: promptName,
             });
+        }
+    };
+    const history = useHistory();
+    const goToChannel = (id) => {
+        if (id) {
+            history.push(`/room/${id}`);
         }
     };
 
@@ -40,7 +48,10 @@ function Sidebar(props) {
                 </NewChannelContainer>
                 <ChannelsList>
                     {props.rooms.map((item) => (
-                        <Channel> # {item.name} </Channel>
+                        <Channel onClick={() => goToChannel(item.id)}>
+                            {" "}
+                            # {item.name}{" "}
+                        </Channel>
                     ))}
                 </ChannelsList>
             </ChannelsContainer>

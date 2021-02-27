@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-function ChatMessage() {
+function ChatMessage({ text, name, image, timestamp }) {
     return (
         <Container>
             <UserAvatar>
-                <img src="https://i.imgur.com/aLtLJ0v.gif" alt="" />
+                <img src={image} alt="" />
             </UserAvatar>
             <MessageContent>
                 <Name>
-                    Lusine <span>Wed Feb 24 2021 22:35</span>
+                    {name}{" "}
+                    <span>{new Date(timestamp.toDate()).toUTCString()}</span>
                 </Name>
-                <Text>
-                    This is the BEST Challenge, Guys !!!!!!!! Thank You all so
-                    much for this opportunity 😍🚀{" "}
-                </Text>
+                <Text>{text}</Text>
             </MessageContent>
         </Container>
     );
@@ -33,11 +31,15 @@ const Container = styled.div`
 `;
 
 const UserAvatar = styled.div`
-    width: 36px;
-    height: 36px;
+    // width: 36px;
+    // height: 36px;
     border-radius: 2px;
     overflow: hidden;
-    margin-right: 8px;
+    // margin-right: 8px;
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+    margin-left: 10px;
 
     img {
         width: 100%;
@@ -47,6 +49,7 @@ const UserAvatar = styled.div`
 const MessageContent = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: start;
 `;
 
 const Name = styled.div`
